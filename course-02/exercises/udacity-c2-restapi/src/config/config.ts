@@ -11,6 +11,9 @@ export const config = {
     "aws_secret_access_key": process.env.UDACITY_AWS_ACCESS_KEY,
     "aws_access_key_id": process.env.UDACITY_AWS_ACCESS_KEY_ID,
     "aws_session_token": process.env.UDACITY_AWS_SESSION_TOKEN,
+    "jwt": {
+      "secret": "Omar",
+    },
   },
   "prod": {
     "username": "",
