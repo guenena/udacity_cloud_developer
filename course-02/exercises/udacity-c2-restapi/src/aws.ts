@@ -44,6 +44,8 @@ export function getPutSignedUrl( key: string ){
     const signedUrlExpireSeconds = 60 * 5
     console.log(key);
     console.log(c.aws_media_bucket);
+    console.log(credentials.accessKeyId);
+    console.log(credentials.secretAccessKey);
 
     const url = s3.getSignedUrl('putObject', {
       Bucket: c.aws_media_bucket,
