@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { FeedItem } from '../models/FeedItem';
 import { requireAuth } from '../../users/routes/auth.router';
 import * as AWS from '../../../../aws';
+import {sequelize} from "../../../../sequelize";
 
 const router: Router = Router();
 
@@ -16,15 +17,32 @@ router.get('/', async (req: Request, res: Response) => {
     res.send(items);
 });
 
-//@TODO
-//Add an endpoint to GET a specific resource by Primary Key
+router.get('/:id',
+    requireAuth,
+    async (req: Request, res: Response) => {
+        const {id} = req.params
+        const item = await FeedItem.findByPk(id);
+        res.status(200).send(item);
+});
 
-// update a specific resource
-router.patch('/:id', 
+router.patch('/:id',
     requireAuth, 
     async (req: Request, res: Response) => {
-        //@TODO try it yourself
-        res.send(500).send("not implemented")
+        const {caption, url} = req.body;
+        if (caption == null && url == null) {
+            res.send(200);
+            return;
+        }
+        const {id} = req.params;
+        const item = await FeedItem.findByPk(id);
+        if (caption != null) {
+            item.caption = caption;
+        }
+        if (url != null) {
+            item.url = url;
+        }
+        item.save();
+        res.status(200).send(item)
 });
 
 
