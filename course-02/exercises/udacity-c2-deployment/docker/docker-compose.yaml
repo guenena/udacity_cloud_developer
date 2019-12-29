@@ -1,0 +1,46 @@
+version: "3"
+services:
+  reverseproxy:
+    image: reverseproxy
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - user
+      - feed
+  user:
+    image: udacity-c2-restapi-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DATABASE=: $POSTGRESS_DATABASE=
+      UDACITY_AWS_HOST: $UDACITY_AWS_HOST
+      UDACITY_AWS_REGION: $UDACITY_AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      UDACITY_AWS_BUCKET: $UDACITY_AWS_BUCKET
+      UDACITY_AWS_ACCESS_KEY: $UDACITY_AWS_ACCESS_KEY
+      UDACITY_AWS_ACCESS_KEY_ID: $UDACITY_AWS_ACCESS_KEY_ID
+      JWT_SECRET: $JWT_SECRET
+      URL: "http://localhost:8100"
+  feed:
+    image: udacity-c2-restapi-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DATABASE=: $POSTGRESS_DATABASE=
+      UDACITY_AWS_HOST: $UDACITY_AWS_HOST
+      UDACITY_AWS_REGION: $UDACITY_AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      UDACITY_AWS_BUCKET: $UDACITY_AWS_BUCKET
+      UDACITY_AWS_ACCESS_KEY: $UDACITY_AWS_ACCESS_KEY
+      UDACITY_AWS_ACCESS_KEY_ID: $UDACITY_AWS_ACCESS_KEY_ID
+      JWT_SECRET: $JWT_SECRET
+      URL: "http://localhost:8100"
+  frontend:
+    image: scheele/udacity-frontend:local
+    ports:
+      - "8100:80"
