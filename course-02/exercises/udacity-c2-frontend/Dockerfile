@@ -1,11 +1,17 @@
 FROM node:12
 
+FROM beevelop/ionic AS ionic
+
 WORKDIR /Users/omar.guenena/docker-images
 
 COPY . ./
 
-RUN npm install
+RUN npm ci
+
+RUN ionic build
 
 EXPOSE 8080
 
-CMD [ "ionic", "serve" ]
+FROM nginx:alpine
+#COPY www /usr/share/nginx/html
+COPY --from=ionic  /Users/omar.guenena/docker-images/www /usr/share/nginx/html
