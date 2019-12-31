@@ -1,0 +1,173 @@
+{
+  "kubeone_api": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "endpoint": "string"
+      }
+    ],
+    "value": {
+      "endpoint": "demo-api-lb-949a4266f12abff3.elb.us-east-2.amazonaws.com"
+    }
+  },
+  "kubeone_hosts": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "control_plane": [
+          "object",
+          {
+            "cloud_provider": "string",
+            "cluster_name": "string",
+            "hostnames": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "private_address": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "public_address": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "ssh_agent_socket": "string",
+            "ssh_port": "number",
+            "ssh_private_key_file": "string",
+            "ssh_user": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "control_plane": {
+        "cloud_provider": "aws",
+        "cluster_name": "demo",
+        "hostnames": [
+          "ip-172-31-12-101.us-east-2.compute.internal",
+          "ip-172-31-22-144.us-east-2.compute.internal",
+          "ip-172-31-46-161.us-east-2.compute.internal"
+        ],
+        "private_address": [
+          "172.31.12.101",
+          "172.31.22.144",
+          "172.31.46.161"
+        ],
+        "public_address": [
+          "18.216.234.94",
+          "3.135.63.95",
+          "13.59.30.118"
+        ],
+        "ssh_agent_socket": "env:SSH_AUTH_SOCK",
+        "ssh_port": 22,
+        "ssh_private_key_file": "",
+        "ssh_user": "ubuntu"
+      }
+    }
+  },
+  "kubeone_workers": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "demo-pool1": [
+          "object",
+          {
+            "providerSpec": [
+              "object",
+              {
+                "cloudProviderSpec": [
+                  "object",
+                  {
+                    "ami": "string",
+                    "availabilityZone": "string",
+                    "diskIops": "number",
+                    "diskSize": "number",
+                    "diskType": "string",
+                    "instanceProfile": "string",
+                    "instanceType": "string",
+                    "region": "string",
+                    "securityGroupIDs": [
+                      "tuple",
+                      [
+                        "string"
+                      ]
+                    ],
+                    "subnetId": "string",
+                    "tags": [
+                      "object",
+                      {
+                        "demo-workers": "string"
+                      }
+                    ],
+                    "vpcId": "string"
+                  }
+                ],
+                "operatingSystem": "string",
+                "operatingSystemSpec": [
+                  "object",
+                  {
+                    "distUpgradeOnBoot": "bool"
+                  }
+                ],
+                "sshPublicKeys": [
+                  "tuple",
+                  [
+                    "string"
+                  ]
+                ]
+              }
+            ],
+            "replicas": "number"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "demo-pool1": {
+        "providerSpec": {
+          "cloudProviderSpec": {
+            "ami": "ami-059d836af932792c3",
+            "availabilityZone": "us-east-2a",
+            "diskIops": 500,
+            "diskSize": 50,
+            "diskType": "gp2",
+            "instanceProfile": "demo-host",
+            "instanceType": "t2.micro",
+            "region": "us-east-2",
+            "securityGroupIDs": [
+              "sg-0595ea25cfc56ef5d"
+            ],
+            "subnetId": "subnet-7337da18",
+            "tags": {
+              "demo-workers": "pool1"
+            },
+            "vpcId": "vpc-4de22726"
+          },
+          "operatingSystem": "ubuntu",
+          "operatingSystemSpec": {
+            "distUpgradeOnBoot": false
+          },
+          "sshPublicKeys": [
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxDFYubuz7ck4hqXX7Lncu8OwmMCIjq5WwqUFCxA5hj80LC7zSBm5KxwtxRXyhMwppHkbRKvxCobPaMV5J3MOpPQerdRcCv0/qKR2s/lkG45qPlvM1JYg9hyYvUH3OxVFdwioK/tzKKDdKS1rEvXEG834LY5YwYE0dZ6Cb8dcTZ84BUPIEcWHVaGhC7uy+v9U5uAVYz8jv+YZ1kvl9zdQhVChigAqW1w0+RGu8ASDhfLv2XMX3PubIxGpzHdVwJxY9awwLj+ssDsQsPOjG8PFKy62ZrZLleyOLc2TcV9QkImm4nJwnhczV+w0yuYyi72jgZcHvt8xFaL1v/puraP2ym8EwfWBt2zgAPsD5NqZbSSA3rpviei/BnY7VKBhOzV+p7BUIFnrXl6f9ntY+IXL2rBcUAHC8q32kpMiK4MOvU80rVsS805Q9I/9OVGfuGDNWddpZyDZ/m4noZ6XmJAIscOOHiVndP+m70n2Hfm9Ey1Q1lvjEM8yEjI6f7zS9WDhcdQJ02RvxHIPZJhDOo6xdCXxPWRLdPnwhTG0PC4ibzgJlUjUGwjchbF8afymJJ+cxF+J/3hCHHP3CSwXI7oJfKVzkk7bJOYKHc2iO2OKdYAK2rmcp6qym2/qYQNX3PQic6TC/3fm3eLTW8caVXbXdVZCchRq5i5Kp9uxaDNtHoQ== omar.guenena@li.me"
+          ]
+        },
+        "replicas": 1
+      }
+    }
+  }
+}
